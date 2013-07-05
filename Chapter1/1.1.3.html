@@ -17,11 +17,25 @@
                 camera.lookAt(new THREE.Vector3(0, 0, 0));
                 scene.add(camera);
                 
-                var cube = new THREE.Mesh(new THREE.CubeGeometry(1, 1, 1),
-                    new THREE.MeshBasicMaterial({
+                var material = new THREE.MeshBasicMaterial({
                         color: 0xffffff // white
-                }));
+                });
+                // cube
+                var cubeGeo = new THREE.Geometry();
+                cubeGeo.vertices = [new THREE.Vector3(1.8, 0.8, 0),
+                        new THREE.Vector3(1.8, -0.8, 0), new THREE.Vector3(0.2, -0.8, 0),
+                        new THREE.Vector3(0.2, 0.8, 0)];
+                cubeGeo.faces.push(new THREE.Face3(0, 2, 1), new THREE.Face3(0, 3, 2));
+                var cube = new THREE.Mesh(cubeGeo, material);
                 scene.add(cube);
+                
+                // triangle
+                var triGeo = new THREE.Geometry();
+                triGeo.vertices = [new THREE.Vector3(0, -0.8, 0),
+                        new THREE.Vector3(-2, -0.8, 0), new THREE.Vector3(-1, 0.8, 0)];
+                triGeo.faces.push(new THREE.Face3(0, 2, 1));
+                var triangle = new THREE.Mesh(triGeo, material);
+                scene.add(triangle);
                 
                 renderer.render(scene, camera);
             }
