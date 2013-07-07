@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <script type="text/javascript" src="../lib/three.js"></script>
+        
+        <script type="text/javascript">
+            function init() {
+                // renderer
+                var renderer = new THREE.WebGLRenderer({
+                    canvas: document.getElementById('mainCanvas')
+                });
+                renderer.setClearColor(0x000000); // black
+                
+                // scene
+                var scene = new THREE.Scene();
+                
+                // camera
+                var camera = new THREE.PerspectiveCamera(45, 4 / 3, 1, 1000);
+                camera.position.set(0, 0, 5);
+                scene.add(camera);
+                
+                // a cube in the scene
+                var cube = new THREE.Mesh(new THREE.CubeGeometry(1, 2, 3),
+                        new THREE.MeshBasicMaterial({
+                            color: 0xff0000
+                        })
+                );
+                scene.add(cube);
+                
+                // render
+                renderer.render(scene, camera);
+            }
+        </script>
+    </head>
+    
+    <body onload="init()">
+        <canvas id="mainCanvas" width="400px" height="300px" ></canvas>
+    </body>
+</html>
