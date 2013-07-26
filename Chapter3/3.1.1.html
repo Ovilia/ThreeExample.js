@@ -20,17 +20,21 @@
                 // draw axes to help you understand the coordinate
                 drawAxes(scene);
                 
-                var material = /*[new THREE.MeshBasicMaterial({
-                    color: 0
-                }), */new THREE.MeshBasicMaterial({
+                var material = new THREE.MeshBasicMaterial({
                     color: 0xffff00,
-                    wireframe: true,
-                    transparent: true
+                    wireframe: true
                 });
                 
-                //drawCube(scene, material);
+                drawCube(scene, material);
                 //drawPlane(scene, material);
-                drawSphere(scene, material);
+                //drawSphere(scene, material);
+                //drawCircle(scene, material);
+                //drawCylinder(scene, material);
+                //drawTetra(scene, material);
+                //drawOcta(scene, material);
+                //drawIcosa(scene, material);
+                //drawTorus(scene, material);
+                //drawTorusKnot(scene, material);
                 
                 // render
                 renderer.render(scene, camera);
@@ -53,8 +57,49 @@
                 //        0, Math.PI * 2, Math.PI / 6, Math.PI / 2), material);
                 //var sphere = new THREE.Mesh(new THREE.SphereGeometry(3, 8, 6,
                 //        Math.PI / 2, Math.PI, Math.PI / 6, Math.PI / 2), material);
-                sphere.flipSided = true;
                 scene.add(sphere);
+            }
+            
+            function drawCircle(scene, material) {
+                var circle = new THREE.Mesh(new THREE.CircleGeometry(3, 18, Math.PI / 3, Math.PI / 3 * 4), material);
+                scene.add(circle);
+            }
+            
+            function drawCylinder(scene, material) {
+                var cylinder = new THREE.Mesh(new THREE.CylinderGeometry(2, 2, 4, 18, 3), material);
+                //var cylinder = new THREE.Mesh(new THREE.CylinderGeometry(2, 3, 4, 18, 3), material);
+                //var cylinder = new THREE.Mesh(new THREE.CylinderGeometry(2, 3, 4, 18, 3, true), material);
+                scene.add(cylinder);
+            }
+            
+            function drawTetra(scene, material) {
+                var tetra = new THREE.Mesh(new THREE.TetrahedronGeometry(3), material);
+                scene.add(tetra);
+            }
+            
+            function drawOcta(scene, material) {
+                var octa = new THREE.Mesh(new THREE.OctahedronGeometry(3), material);
+                scene.add(octa);
+            }
+            
+            function drawIcosa(scene, material) {
+                var icosa = new THREE.Mesh(new THREE.IcosahedronGeometry(3), material);
+                scene.add(icosa);
+            }
+            
+            function drawTorus(scene, material) {
+                var torus = new THREE.Mesh(new THREE.TorusGeometry(3, 1, 4, 8, Math.PI / 3 * 2), material);
+                scene.add(torus);
+            }
+            
+            function drawTorusKnot(scene, material) {
+                var torus = new THREE.Mesh(new THREE.TorusKnotGeometry(2, 0.5, 32, 8), material);
+                scene.add(torus);
+            }
+            
+            function drawTube(scene, material) {
+                var tube = new THREE.Mesh(new THREE.TubeGeometry(1, 0.5), material);
+                scene.add(tube);
             }
             
             function drawAxes(scene) {
