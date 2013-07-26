@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <script type="text/javascript" src="../lib/three.js"></script>
+        
+        <script type="text/javascript">
+            function init() {
+                var renderer = new THREE.WebGLRenderer({
+                    canvas: document.getElementById('mainCanvas')
+                });
+                renderer.setClearColor(0x000000);
+                var scene = new THREE.Scene();
+                
+                // camera
+                var camera = new THREE.OrthographicCamera(-5, 5, 3.75, -3.75, 0.1, 100);
+                camera.position.set(25, 25, 25);
+                camera.lookAt(new THREE.Vector3(0, 0, 0));
+                scene.add(camera);
+                
+                // draw axes to help you understand the coordinate
+                drawAxes(scene);
+                
+                var material = /*[new THREE.MeshBasicMaterial({
+                    color: 0
+                }), */new THREE.MeshBasicMaterial({
+                    color: 0xffff00,
+                    wireframe: true,
+                    transparent: true
+                });
+                
+                //drawCube(scene, material);
+                //drawPlane(scene, material);
+                drawSphere(scene, material);
+                
+                // render
+                renderer.render(scene, camera);
+            }
+            
+            function drawCube(scene, material) {
+                var cube = new THREE.Mesh(new THREE.CubeGeometry(1, 2, 3, 2, 2, 3), material);
+                scene.add(cube);
+            }
+            
+            function drawPlane(scene, material) {
+                var plane = new THREE.Mesh(new THREE.PlaneGeometry(2, 4), material);
+                scene.add(plane);
+            }
+            
+            function drawSphere(scene, material) {
+                var sphere = new THREE.Mesh(new THREE.SphereGeometry(3, 8, 6,
+                        Math.PI / 6, Math.PI / 3), material);
+                //var sphere = new THREE.Mesh(new THREE.SphereGeometry(3, 8, 6, 
+                //        0, Math.PI * 2, Math.PI / 6, Math.PI / 2), material);
+                //var sphere = new THREE.Mesh(new THREE.SphereGeometry(3, 8, 6,
+                //        Math.PI / 2, Math.PI, Math.PI / 6, Math.PI / 2), material);
+                sphere.flipSided = true;
+                scene.add(sphere);
+            }
+            
+            function drawAxes(scene) {
+                // x-axis
+                var xGeo = new THREE.Geometry();
+                xGeo.vertices.push(new THREE.Vector3(0, 0, 0));
+                xGeo.vertices.push(new THREE.Vector3(1, 0, 0));
+                var xMat = new THREE.LineBasicMaterial({
+                    color: 0xff0000
+                });
+                var xAxis = new THREE.Line(xGeo, xMat);
+                scene.add(xAxis);
+                
+                // y-axis
+                var yGeo = new THREE.Geometry();
+                yGeo.vertices.push(new THREE.Vector3(0, 0, 0));
+                yGeo.vertices.push(new THREE.Vector3(0, 1, 0));
+                var yMat = new THREE.LineBasicMaterial({
+                    color: 0x00ff00
+                });
+                var yAxis = new THREE.Line(yGeo, yMat);
+                scene.add(yAxis);
+                
+                // z-axis
+                var zGeo = new THREE.Geometry();
+                zGeo.vertices.push(new THREE.Vector3(0, 0, 0));
+                zGeo.vertices.push(new THREE.Vector3(0, 0, 1));
+                var zMat = new THREE.LineBasicMaterial({
+                    color: 0x00ccff
+                });
+                var zAxis = new THREE.Line(zGeo, zMat);
+                scene.add(zAxis);
+            }
+        </script>
+    </head>
+    
+    <body onload="init()">
+        <canvas id="mainCanvas" width="400px" height="300px" ></canvas>
+    </body>
+</html>
