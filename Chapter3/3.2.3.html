@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <script type="text/javascript" src="../lib/three.js"></script>
+        <script type="text/javascript" src="../lib/helvetiker_regular.typeface.js"></script>
+        
+        <script type="text/javascript">
+            function init() {
+                var renderer = new THREE.WebGLRenderer({
+                    canvas: document.getElementById('mainCanvas')
+                });
+                renderer.setClearColor(0x000000);
+                var scene = new THREE.Scene();
+                
+                // camera
+                var camera = new THREE.OrthographicCamera(-5, 5, 3.75, -3.75, 0.1, 100);
+                camera.position.set(25, 25, 25);
+                camera.lookAt(new THREE.Vector3(0, 0, 0));
+                scene.add(camera);
+                
+                // light
+                var light = new THREE.PointLight(0xffffff, 1, 200);
+                light.position.set(10, 15, 25);
+                scene.add(light);
+                
+                var material = new THREE.MeshPhongMaterial({
+                    color: 0xff0000,
+                    specular: 0xffff00,
+                    shininess: 100
+                });
+                
+                var sphere = new THREE.Mesh(new THREE.SphereGeometry(3, 20, 8), material);
+                scene.add(sphere);
+                
+                renderer.render(scene, camera);
+            }
+        </script>
+    </head>
+    
+    <body onload="init()">
+        <canvas id="mainCanvas" width="400px" height="300px" ></canvas>
+    </body>
+</html>
