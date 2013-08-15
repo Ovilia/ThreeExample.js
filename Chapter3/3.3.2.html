@@ -25,6 +25,10 @@
                 var mesh = new THREE.Mesh(geometry, material);
                 scene.add(mesh);
                 
+                mesh.material = new THREE.MeshLambertMaterial({
+                    color: 0xff0000
+                });
+                
                 var light = new THREE.DirectionalLight(0xffffff);
                 light.position.set(20, 10, 5);
                 scene.add(light);
