@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <script type="text/javascript" src="../lib/three.js"></script>
+        
+        <script type="text/javascript">
+            function init() {
+                var renderer = new THREE.WebGLRenderer({
+                    canvas: document.getElementById('mainCanvas')
+                });
+                renderer.setClearColor(0x000000);
+                var scene = new THREE.Scene();
+                
+                // camera
+                var camera = new THREE.OrthographicCamera(-10, 10, 7.5, -7.5, 0.1, 100);
+                camera.position.set(25, 25, 25);
+                camera.lookAt(new THREE.Vector3(0, 0, 0));
+                scene.add(camera);
+                
+                // light
+                var light = new THREE.PointLight(0xffffff, 1, 1000);
+                light.position.set(10, 15, 20);
+                scene.add(light);
+                
+                var texture = THREE.ImageUtils.loadTexture('../img/0.png', {}, function() {
+                    renderer.render(scene, camera);
+                });
+                var material = new THREE.MeshLambertMaterial({
+                    map: texture
+                });
+                
+                var cube = new THREE.Mesh(new THREE.CubeGeometry(5, 5, 5), material);
+                scene.add(cube);
+                //var sphere = new THREE.Mesh(new THREE.SphereGeometry(5, 25, 15), material);
+                //scene.add(sphere);
+                
+                renderer.render(scene, camera);
+            }
+        </script>
+    </head>
+    
+    <body onload="init()">
+        <canvas id="mainCanvas" width="400px" height="300px" ></canvas>
+    </body>
+</html>
