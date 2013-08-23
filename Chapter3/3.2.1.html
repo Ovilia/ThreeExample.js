@@ -2,6 +2,7 @@
 <html>
     <head>
         <script type="text/javascript" src="../lib/three.js"></script>
+        <script type="text/javascript" src="../lib/helvetiker_regular.typeface.js"></script>
         
         <script type="text/javascript">
             function init() {
@@ -12,25 +13,63 @@
                 var scene = new THREE.Scene();
                 
                 // camera
-                var camera = new THREE.OrthographicCamera(-5, 5, 3.75, -3.75, 0.1, 100);
-                camera.position.set(25, 25, 25);
-                camera.lookAt(new THREE.Vector3(0, 0, 0));
+                var camera = new THREE.OrthographicCamera(-2.5, 2.5, 1.875, -1.875, 0.1, 100);
+                camera.position.set(5, 5, 20);
+                camera.lookAt(new THREE.Vector3(1, 0, 0));
                 scene.add(camera);
                 
-                // light
-                var light = new THREE.PointLight(0xffffff, 1, 100);
-                light.position.set(10, 15, 5);
-                scene.add(light);
+                // draw axes to help you understand the coordinate
+                drawAxes(scene);
                 
-                var material = new THREE.MeshBasicMaterial({
+                var material = new THREE.MeshLambertMaterial({
                     color: 0xffff00,
-                    opacity: 0.75
+                    //wireframe: true
                 });
                 
-                var cube = new THREE.Mesh(new THREE.CubeGeometry(5, 5, 5), material);
-                scene.add(cube);
+                var mesh = new THREE.Mesh(new THREE.TextGeometry('Hello', {
+                    size: 1,
+                    height: 1
+                }), material);
+                scene.add(mesh);
                 
+                var light = new THREE.DirectionalLight(0xffffff);
+                light.position.set(-5, 10, 5);
+                scene.add(light);
+                
+                // render
                 renderer.render(scene, camera);
+            }
+            
+            function drawAxes(scene) {
+                // x-axis
+                var xGeo = new THREE.Geometry();
+                xGeo.vertices.push(new THREE.Vector3(0, 0, 0));
+                xGeo.vertices.push(new THREE.Vector3(1, 0, 0));
+                var xMat = new THREE.LineBasicMaterial({
+                    color: 0xff0000
+                });
+                var xAxis = new THREE.Line(xGeo, xMat);
+                scene.add(xAxis);
+                
+                // y-axis
+                var yGeo = new THREE.Geometry();
+                yGeo.vertices.push(new THREE.Vector3(0, 0, 0));
+                yGeo.vertices.push(new THREE.Vector3(0, 1, 0));
+                var yMat = new THREE.LineBasicMaterial({
+                    color: 0x00ff00
+                });
+                var yAxis = new THREE.Line(yGeo, yMat);
+                scene.add(yAxis);
+                
+                // z-axis
+                var zGeo = new THREE.Geometry();
+                zGeo.vertices.push(new THREE.Vector3(0, 0, 0));
+                zGeo.vertices.push(new THREE.Vector3(0, 0, 1));
+                var zMat = new THREE.LineBasicMaterial({
+                    color: 0x00ccff
+                });
+                var zAxis = new THREE.Line(zGeo, zMat);
+                scene.add(zAxis);
             }
         </script>
     </head>
