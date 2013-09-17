@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <script type="text/javascript" src="../lib/three.js"></script>
+        <script type="text/javascript" src="../lib/MTLLoader.js"></script>
+        <script type="text/javascript" src="../lib/OBJMTLLoader.js"></script>
+        
+        <script type="text/javascript">
+            var scene = null;
+            var camera = null;
+            var renderer = null;
+            
+            function init() {
+                renderer = new THREE.WebGLRenderer({
+                    canvas: document.getElementById('mainCanvas')
+                });
+                renderer.setClearColor(0x000000);
+                renderer.shadowMapEnabled = true;
+                renderer.shadowMapSoft = true;
+                
+                scene = new THREE.Scene();
+                
+                camera = new THREE.OrthographicCamera(-5, 5, 3.75, -3.75, 0.1, 100);
+                camera.position.set(5, 15, 25);
+                camera.lookAt(new THREE.Vector3(0, 0, 0));
+                scene.add(camera);
+                
+                var light = new THREE.DirectionalLight(0xffffff);
+                light.castShadow = true;
+                light.shadowDarkness = 0.5;
+                light.shadowCameraNear = 0.1;
+                light.shadowCameraFar = 20;
+                light.shadowCameraVisible = true;
+                light.position.set(-2.0, 5.0, 3.0);
+                scene.add(light);
+                
+                var greenCube = new THREE.Mesh(new THREE.CubeGeometry(2, 2, 2),
+                        new THREE.MeshLambertMaterial({color: 0x00ff00}));
+                greenCube.castShadow = true;
+                scene.add(greenCube);
+                
+                var plane = new THREE.Mesh(new THREE.PlaneGeometry(8, 8),
+                        new THREE.MeshLambertMaterial({color: 0xcccccc}));
+                plane.rotation.x = -Math.PI / 2;
+                plane.position.y = -1;
+                plane.receiveShadow = true;
+                scene.add(plane);
+                
+                renderer.render(scene, camera);
+            }
+        </script>
+    </head>
+    
+    <body onload="init()">
+        <canvas id="mainCanvas" width="400px" height="300px" ></canvas>
+    </body>
+</html>
