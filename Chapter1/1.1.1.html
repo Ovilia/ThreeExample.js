@@ -20,14 +20,11 @@
                 var material = new THREE.MeshBasicMaterial({
                         color: 0xffffff // white
                 });
-                // cube
-                var cubeGeo = new THREE.Geometry();
-                cubeGeo.vertices = [new THREE.Vector3(1.8, 0.8, 0),
-                        new THREE.Vector3(1.8, -0.8, 0), new THREE.Vector3(0.2, -0.8, 0),
-                        new THREE.Vector3(0.2, 0.8, 0)];
-                cubeGeo.faces.push(new THREE.Face3(0, 2, 1), new THREE.Face3(0, 3, 2));
-                var cube = new THREE.Mesh(cubeGeo, material);
-                scene.add(cube);
+                // plane
+                var planeGeo = new THREE.PlaneGeometry(1.5, 1.5);
+                var plane = new THREE.Mesh(planeGeo, material);
+                plane.position.x = 1;
+                scene.add(plane);
                 
                 // triangle
                 var triGeo = new THREE.Geometry();
