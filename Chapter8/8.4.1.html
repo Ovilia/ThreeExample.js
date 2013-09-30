@@ -12,10 +12,11 @@
             var alpha = 0;
             
             function init() {
-                renderer = new THREE.WebGLRenderer({
-                    canvas: document.getElementById('mainCanvas')
-                });
-                renderer.setClearColor(0x000000);
+                renderer = new THREE.WebGLRenderer();
+                renderer.setSize(400, 300);
+                
+                var container = document.getElementById('canvas');
+                container.appendChild(renderer.domElement);
                 renderer.shadowMapEnabled = true;
                 
                 scene = new THREE.Scene();
@@ -67,6 +68,6 @@
     </head>
     
     <body onload="init()">
-        <canvas id="mainCanvas" width="400px" height="300px" ></canvas>
+        <div id="canvas" width="400px" height="300px"></div>
     </body>
 </html>
