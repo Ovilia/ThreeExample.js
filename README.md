@@ -3,6 +3,7 @@ Three.jsExamples
 
 Examples for a book on Three.js
 
+Book is available at http://www.ituring.com.cn/book/1272 .
 
 
 Chapter 1
