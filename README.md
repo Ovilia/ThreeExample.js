@@ -75,7 +75,7 @@ http://zhangwenli.com/ThreeExample.js/Chapter7/7.2.1.html
 
 http://zhangwenli.com/ThreeExample.js/Chapter7/7.3.1.html
 
-http://zhangwenli.com/ThreeExample.js/Chapter6/7.3.2.html
+http://zhangwenli.com/ThreeExample.js/Chapter7/7.3.2.html
 
 Chapter 8
 ---------
