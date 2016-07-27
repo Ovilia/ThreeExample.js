@@ -42,14 +42,20 @@
                 
                 // set faces
                 // top face
-                geometry.faces.push(new THREE.Face4(0, 1, 2, 3));
+                geometry.faces.push(new THREE.Face3(0, 1, 3));
+                geometry.faces.push(new THREE.Face3(1, 2, 3));
                 // bottom face
-                geometry.faces.push(new THREE.Face4(4, 5, 6, 7));
+                geometry.faces.push(new THREE.Face3(4, 5, 6));
+                geometry.faces.push(new THREE.Face3(5, 6, 7));
                 // side faces
-                geometry.faces.push(new THREE.Face4(0, 1, 5, 4));
-                geometry.faces.push(new THREE.Face4(1, 2, 6, 5));
-                geometry.faces.push(new THREE.Face4(2, 3, 7, 6));
-                geometry.faces.push(new THREE.Face4(3, 0, 4, 7));
+                geometry.faces.push(new THREE.Face3(1, 5, 6));
+                geometry.faces.push(new THREE.Face3(6, 2, 1));
+                geometry.faces.push(new THREE.Face3(2, 6, 7));
+                geometry.faces.push(new THREE.Face3(7, 3, 2));
+                geometry.faces.push(new THREE.Face3(3, 7, 0));
+                geometry.faces.push(new THREE.Face3(7, 4, 0));
+                geometry.faces.push(new THREE.Face3(0, 4, 5));
+                geometry.faces.push(new THREE.Face3(0, 5, 1));
                 
                 var mesh = new THREE.Mesh(geometry, material);
                 scene.add(mesh);

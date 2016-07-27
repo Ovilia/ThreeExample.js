@@ -2,8 +2,7 @@
 <html>
     <head>
         <script type="text/javascript" src="../lib/three.js"></script>
-        <!-- typeface.js is available at https://github.com/mrdoob/three.js/tree/master/examples/fonts -->
-        <script type="text/javascript" src="../lib/helvetiker_regular.typeface.js"></script>
+        <!-- Find more information at https://github.com/mrdoob/three.js/tree/master/examples/fonts -->
         
         <script type="text/javascript">
             function init() {
@@ -22,23 +21,28 @@
                 // draw axes to help you understand the coordinate
                 drawAxes(scene);
                 
-                var material = new THREE.MeshLambertMaterial({
+                var material = new THREE.MeshBasicMaterial({
                     color: 0xffff00,
-                    //wireframe: true
+                    wireframe: true
                 });
-                
-                var mesh = new THREE.Mesh(new THREE.TextGeometry('Hello', {
-                    size: 1,
-                    height: 1
-                }), material);
-                scene.add(mesh);
-                
-                var light = new THREE.DirectionalLight(0xffffff);
-                light.position.set(-5, 10, 5);
-                scene.add(light);
-                
-                // render
-                renderer.render(scene, camera);
+                    
+                // var light = new THREE.DirectionalLight(0xffffff);
+                // light.position.set(-5, 10, 5);
+                // scene.add(light);
+
+                // load font
+                var loader = new THREE.FontLoader();
+                loader.load('../lib/helvetiker_regular.typeface.json', function(font) {
+                    var mesh = new THREE.Mesh(new THREE.TextGeometry('Hello', {
+                        font: font,
+                        size: 1,
+                        height: 1
+                    }), material);
+                    scene.add(mesh);
+                    
+                    // render
+                    renderer.render(scene, camera);
+                });
             }
             
             function drawAxes(scene) {

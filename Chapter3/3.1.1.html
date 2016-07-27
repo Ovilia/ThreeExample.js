@@ -26,15 +26,15 @@
                 });
                 
                 drawCube(scene, material);
-                //drawPlane(scene, material);
-                //drawSphere(scene, material);
-                //drawCircle(scene, material);
-                //drawCylinder(scene, material);
-                //drawTetra(scene, material);
-                //drawOcta(scene, material);
-                //drawIcosa(scene, material);
-                //drawTorus(scene, material);
-                //drawTorusKnot(scene, material);
+                // drawPlane(scene, material);
+                // drawSphere(scene, material);
+                // drawCircle(scene, material);
+                // drawCylinder(scene, material);
+                // drawTetra(scene, material);
+                // drawOcta(scene, material);
+                // drawIcosa(scene, material);
+                // drawTorus(scene, material);
+                // drawTorusKnot(scene, material);
                 
                 // render
                 renderer.render(scene, camera);
@@ -51,12 +51,17 @@
             }
             
             function drawSphere(scene, material) {
-                var sphere = new THREE.Mesh(new THREE.SphereGeometry(3, 8, 6,
-                        Math.PI / 6, Math.PI / 3), material);
-                //var sphere = new THREE.Mesh(new THREE.SphereGeometry(3, 8, 6, 
-                //        0, Math.PI * 2, Math.PI / 6, Math.PI / 2), material);
-                //var sphere = new THREE.Mesh(new THREE.SphereGeometry(3, 8, 6,
-                //        Math.PI / 2, Math.PI, Math.PI / 6, Math.PI / 2), material);
+                var sphere = new THREE.Mesh(new THREE.SphereGeometry(3, 8, 6), material);
+                // var sphere = new THREE.Mesh(new THREE.SphereGeometry(3, 8, 6,
+                //      0, Math.PI * 2, Math.PI / 6, Math.PI / 2), material);
+                // var sphere = new THREE.Mesh(new THREE.SphereGeometry(3, 8, 6,
+                //      Math.PI / 2, Math.PI, Math.PI / 6, Math.PI / 2), material);
+                // var sphere = new THREE.Mesh(new THREE.SphereGeometry(3, 8, 6,
+                //      Math.PI / 6, Math.PI / 3), material);
+                // var sphere = new THREE.Mesh(new THREE.SphereGeometry(3, 8, 6,
+                //      0, Math.PI * 2, Math.PI / 6, Math.PI / 3), material);
+                // var sphere = new THREE.Mesh(new THREE.SphereGeometry(3, 8, 6,
+                //      Math.PI / 2, Math.PI, Math.PI / 6, Math.PI / 2), material);
                 scene.add(sphere);
             }
             
@@ -67,8 +72,8 @@
             
             function drawCylinder(scene, material) {
                 var cylinder = new THREE.Mesh(new THREE.CylinderGeometry(2, 2, 4, 18, 3), material);
-                //var cylinder = new THREE.Mesh(new THREE.CylinderGeometry(2, 3, 4, 18, 3), material);
-                //var cylinder = new THREE.Mesh(new THREE.CylinderGeometry(2, 3, 4, 18, 3, true), material);
+                // var cylinder = new THREE.Mesh(new THREE.CylinderGeometry(2, 3, 4, 18, 3), material);
+                // var cylinder = new THREE.Mesh(new THREE.CylinderGeometry(2, 3, 4, 18, 3, true), material);
                 scene.add(cylinder);
             }
             
@@ -88,7 +93,9 @@
             }
             
             function drawTorus(scene, material) {
-                var torus = new THREE.Mesh(new THREE.TorusGeometry(3, 1, 4, 8, Math.PI / 3 * 2), material);
+                var torus = new THREE.Mesh(new THREE.TorusGeometry(3, 1, 4, 8), material);
+                // var torus = new THREE.Mesh(new THREE.TorusGeometry(3, 1, 12, 18), material);
+                // var torus = new THREE.Mesh(new THREE.TorusGeometry(3, 1, 4, 8, Math.PI / 3 * 2), material);
                 scene.add(torus);
             }
             
@@ -106,7 +113,7 @@
                 // x-axis
                 var xGeo = new THREE.Geometry();
                 xGeo.vertices.push(new THREE.Vector3(0, 0, 0));
-                xGeo.vertices.push(new THREE.Vector3(1, 0, 0));
+                xGeo.vertices.push(new THREE.Vector3(3, 0, 0));
                 var xMat = new THREE.LineBasicMaterial({
                     color: 0xff0000
                 });
@@ -116,7 +123,7 @@
                 // y-axis
                 var yGeo = new THREE.Geometry();
                 yGeo.vertices.push(new THREE.Vector3(0, 0, 0));
-                yGeo.vertices.push(new THREE.Vector3(0, 1, 0));
+                yGeo.vertices.push(new THREE.Vector3(0, 3, 0));
                 var yMat = new THREE.LineBasicMaterial({
                     color: 0x00ff00
                 });
@@ -126,7 +133,7 @@
                 // z-axis
                 var zGeo = new THREE.Geometry();
                 zGeo.vertices.push(new THREE.Vector3(0, 0, 0));
-                zGeo.vertices.push(new THREE.Vector3(0, 0, 1));
+                zGeo.vertices.push(new THREE.Vector3(0, 0, 3));
                 var zMat = new THREE.LineBasicMaterial({
                     color: 0x00ccff
                 });
