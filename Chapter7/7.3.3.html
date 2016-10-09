@@ -2,8 +2,7 @@
 <html>
     <head>
         <script type="text/javascript" src="../lib/three.js"></script>
-        <script type="text/javascript" src="../lib/MTLLoader.js"></script>
-        <script type="text/javascript" src="../lib/OBJLoader.js"></script>
+        <script type="text/javascript" src="../lib/ColladaLoader.js"></script>
         
         <script type="text/javascript">
             var scene = null;
@@ -24,24 +23,12 @@
                 camera.position.set(15, 25, 25);
                 camera.lookAt(new THREE.Vector3(0, 2, 0));
                 scene.add(camera);
-                
-                // material loader
-                var mtlLoader = new THREE.MTLLoader();
-                mtlLoader.setPath('../lib/');
-                mtlLoader.load('port.mtl', function(materials) {
-                    materials.preload();
 
-                    // model loader
-                    var objLoader = new THREE.OBJLoader();
-                    objLoader.setMaterials(materials);
-                    objLoader.setPath('../lib/');
-                    objLoader.load('port.obj', function ( object ) {
-                        object.position.y = - 95;
-                        // if has object, add to scene
-                        if (object.children.length > 0) {
-                            scene.add( object.children[0] );
-                        }
-                    });
+                var loader = new THREE.ColladaLoader();
+                loader.load('../lib/port.dae', function (collada) {
+                    if (collada.scene.children.length > 0) {
+                        scene.add(collada.scene.children[0]);
+                    }
                 });
 
                 var light = new THREE.DirectionalLight(0xffffff);
